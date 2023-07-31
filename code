@@ -1,0 +1,23 @@
+// C++ code
+
+float TEMP;
+const float referenceVoltage = 5.0; // Vref of Arduino (5V)
+
+void setup()
+{
+  pinMode(A1, INPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  int readings = analogRead(A1);
+  float voltage = (float)readings * referenceVoltage / 1023.0;
+  float temperatureCelsius = (voltage - 0.5) * 100.0;
+
+  Serial.print("Temperature = ");
+  Serial.print(temperatureCelsius);
+  Serial.print(" °C");
+  Serial.println();
+  delay(1000);
+}
